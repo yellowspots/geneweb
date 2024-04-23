@@ -1,5 +1,3 @@
-console.log('FUCK OFF!');
-
 var width = 400, height = 400;
 
 var projection = d3.geo.orthographic()
@@ -41,5 +39,5 @@ projection.rotate([λ(current), 0]);
 
 }
 
-    setInterval(bgscroll, scrollSpeed);  
+setInterval(bgscroll, scrollSpeed);
 
