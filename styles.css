@@ -110,7 +110,7 @@ h1, h2, a, p {
 
 @media only screen and (max-width: 600px) {
     .buttons {
-        flex-direction: column;
+        flex-direction: row !important;
         gap: 10px;
     }
 }
