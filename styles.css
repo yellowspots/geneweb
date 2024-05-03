@@ -43,20 +43,15 @@ h1, h2, a, p {
 
 .buttons {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
 }
 
-.nav-button {
-    background-color: #656161;
-    color: #ffffff;
-    border: none;
-    margin-top: 200px;
-    padding: 10px 20px;
-    text-align: end;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 10px;
-    cursor: pointer;
-    border-radius: 4px;
+/* Media query for smaller screens (phones) */
+@media only screen and (max-width: 600px) {
+    .buttons {
+        flex-direction: column;
+    }
 }
