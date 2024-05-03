@@ -1,0 +1,68 @@
+body {
+    background: rgb(36, 36, 36);
+    text-align: center;
+    margin-top: 100px;
+    padding: 25px;
+    margin-left: px;
+}
+
+#worldmap {
+    margin: 10px;
+}
+
+#worldmap svg {
+    background: rgba(68, 71, 72, 0.4);
+    border-radius: 200px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+}
+
+.land {
+    fill: rgba(143, 142, 142, 0.94);
+}
+
+#globesarecool {
+    color: #855982;
+}
+
+h1 {
+    color: rgb(255, 255, 255);
+}
+
+h2 {
+    color: rgb(250, 250, 254);
+}
+
+a {
+    color: white;
+}
+
+p {
+    color: rgb(255, 255, 255);
+}
+
+.my-button {
+    background-color: #656161;
+    color: #333333;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.nav-button {
+    background-color: #656161;
+    color: #ffffff;
+    border: none;
+    margin-top: 200px;
+    padding: 10px 20px;
+    text-align: end;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 10px;
+    cursor: pointer;
+    border-radius: 4px;
+}
