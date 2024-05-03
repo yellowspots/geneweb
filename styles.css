@@ -46,12 +46,12 @@ h1, h2, a, p {
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    flex-wrap: wrap;
+    gap: 20px;
 }
 
-/* Media query for smaller screens (phones) */
 @media only screen and (max-width: 600px) {
     .buttons {
         flex-direction: column;
+        gap: 10px;
     }
 }
