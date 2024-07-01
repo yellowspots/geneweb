@@ -5,6 +5,14 @@ module.exports = {
     "./script.js"
   ],
   theme: {
+    extend: {
+      colors: {
+        primary: {
+          light: 'hsl(var(--primary))', // Light mode button color
+          dark: 'hsl(var(--primary-dark))' // Dark mode button color
+        },
+      },
+    },
     colors: {
       background: 'hsl(var(--background))',
       foreground: 'hsl(var(--foreground))',

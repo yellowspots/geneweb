@@ -1,26 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>gene hwang</title>
-        <script src="https://cdn.tailwindcss.com"></script>
-        <script src="tailwind.config.js"></script>
-        <script>
-            function redirectAfter2Seconds(initialUrl, finalUrl) {
-                // Navigate to the initial URL
-                window.location.href = initialUrl;
-    
-                // Set a timer to navigate to the final URL after 2 seconds
-                setTimeout(function() {
-                    window.location.href = finalUrl;
-                }, 2000);
-            }
-        </script>
-        <link href="globals.css" rel="stylesheet">
-        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-        <link rel="icon" href="favicon.ico" type="image/x-icon">
-    </head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>gene hwang</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="tailwind.config.js"></script>
+    <link href="globals.css" rel="stylesheet">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+</head>
 <body class="bg-background text-foreground transition-colors duration-300">
     <div class="flex flex-col min-h-[100vh]">
         <header class="flex items-center justify-between px-4 py-6 sm:px-6 lg:px-8">
@@ -77,7 +66,7 @@
                         </p>
 
                         <p>
-                            most of what i know through the internet, hands-on projects, and a <strong>ton</strong> of trial and error. i'm a firm believer in the power of self-directed learning and the importance of building things that matter, made available to everyone. you can find me at the <a href="https://themultiverse.school" target="_blank" rel="noopener noreferrer">multiverse school</a>, where i'm working on a few projects with people all around the world.
+                            what i know comes from the internet, hands-on projects, and a <strong>ton</strong> of trial and error. i'm a firm believer in the power of self-directed learning and the importance of building things that matter by "making do with what you have," making anything accessible to anyone. you can find me at the <a href="https://themultiverse.school" target="_blank" rel="noopener noreferrer">multiverse school</a>, where i'm working on projects with people from around the world.
                         </p>
                     </div>
                 </section>
@@ -94,13 +83,13 @@
                             <div class="p-6 pt-1">
                                 <div class="prose text-muted-foreground">
                                     <p>
-                                        semantic searching from natural language, powered by nlp and ai to retrieve bookmarked social media posts. i built this with python, javascript, a couple of very ethical scrapers, and postgres. (gradio demo only)
+                                        ai-aided semantic searching with requests in natural language to retrieve ultra-specific bookmarked social media posts. i built this with python, javascript, a couple of very ethical scrapers, and postgres. (gradio demo only)
                                     </p>
                                 </div>
                             </div>
                             <div class="flex items-center p-6">
-                                <a class="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground shadow transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50" href="https://github.com/yerbymatey/briend?tab=readme-ov-file">
-                                    please don't
+                                <a class="button-gradient inline-flex items-center justify-center text-sm font-medium shadow transition-colors hover:shadow-lg focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50" href="https://github.com/yerbymatey/briend?tab=readme-ov-file">
+                                    pre, pre, pre-alpha
                                 </a>
                             </div>
                         </div>
@@ -112,13 +101,13 @@
                             <div class="p-6 pt-1">
                                 <div class="prose text-muted-foreground">
                                     <p>
-                                    multiverse students can host and request compute resources from each other. it's like a decentralized cloud computing platform. only for single machine inference requests for now, but we're working on it.
+                                    students can host and request compute resources from each other. it's like a decentralized cloud computing platform. only available for inference requests from a single hosted endpoint for now, but we're working on it.
                                 </p>
                                 </div>
                             </div>
                             <div class="flex items-center p-6">
-                                <a class="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground shadow transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50" href="https://themultiverse.school/secret_swarm">
-                                    (multiverse only for rn)
+                                <a class="button-gradient inline-flex items-center justify-center text-sm font-medium shadow transition-colors hover:shadow-lg focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50" href="https://themultiverse.school/secret_swarm">
+                                    multiverse only for rn
                                 </a>
                             </div>
                         </div>
@@ -137,13 +126,14 @@
                                 </div>
                             </div>
                             <div class="flex items-center p-6">
-                                <a id="redirectLink" class="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground shadow transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" onclick="event.preventDefault(); redirectAfter2Seconds('https://www.youtube.com/watch?v=dQw4w9WgXcQ', 'https://geneweb.site/projects/biohacking.html');">
+                                <a id="redirectLink" class="button-gradient inline-flex items-center justify-center text-sm font-medium shadow transition-colors hover:shadow-lg focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" onclick="event.preventDefault(); redirectAfter2Seconds('https://www.youtube.com/watch?v=dQw4w9WgXcQ', 'https://geneweb.site/projects/biohacking.html');">
                                     check it out
                                 </a>
                             </div>
                         </div>
                     </div>
                 </section>
+
             </div>
         </main>
         <footer class="bg-muted px-4 py-6 sm:px-6 lg:px-8">
@@ -152,28 +142,7 @@
         </footer>
     </div>
 
-    <script>
-        const themeToggle = document.getElementById('theme-toggle');
-        const html = document.documentElement;
-
-        themeToggle.addEventListener('click', () => {
-            if (html.classList.contains('dark')) {
-                html.classList.remove('dark');
-                localStorage.setItem('theme', 'light');
-            } else {
-                html.classList.add('dark');
-                localStorage.setItem('theme', 'dark');
-            }
-        });
-
-        // Check for saved theme preference or use system preference
-        const savedTheme = localStorage.getItem('theme');
-        const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-
-        if (savedTheme === 'dark' || (!savedTheme && systemPrefersDark)) {
-            html.classList.add('dark');
-        }
-    </script>
+    <script src="script.js"></script>
 </body>
 <footer class="flex items-center justify-center bg-muted px-4 py-6 sm:px-6 lg:px-8">
     <div class="mx-auto max-w-3xl text-center text-muted-foreground">
