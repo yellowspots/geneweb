@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anomalous Token Fingerprinting: The GPT-4.5 Hypetrain and Reading Between the Words</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1, h2, h3 {
+            color: #2c3e50;
+        }
+        code {
+            background-color: #f4f4f4;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            display: block;
+            padding: 10px;
+            white-space: pre-wrap;
+        }
+        .note {
+            background-color: #f0f0f0;
+            border-left: 5px solid #3498db;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+        .header {
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+        .back-button {
+            position: absolute;
+            left: -50px;
+            width: 30px;
+            height: 30px;
+            text-decoration: none;
+        }
+        .back-button svg {
+            fill: #000; /* Change this to your desired color */
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <a href="blogs.html" class="back-button" aria-label="Back to Home">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                <path d="M19 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H19z"/>
+            </svg>
+        </a>
+        <h1>Anomalous Token Fingerprinting: The GPT-4.5 Hypetrain and Reading Between the Words</h1>
+    </div>
+
+    <h2>Introduction</h2>
+    <p>Certain words don't make sense to us. Certainly, certain words in a certain order, less so. A curious phenomenon emerged with GPT-3: "anomalous tokens" that cause models to generate strange outputs. Let's explore what these tokens are, how researchers are using them to "fingerprint" models, and what this might mean in the race to unmask the identity of "gpt2-chatbot" that recently appeared on the LMSYS Chatbot Arena.</p>
+
+    <h2>The Speculative Hype Train</h2>
+
+    <h3>Timeline of Events</h3>
+    <ul>
+        <li><strong>April 27th, 2024</strong>: @Träumen on X posts about a mysterious new competitor on the LMSYS Chatbot Arena.</li>
+        <li><strong>A few days later</strong>: @karan4d claims to have figured out what "gpt2-chatbot" really is using "anomalous tokens".</li>
+        <li>Speculation arises that it's GPT-4.5, with @Sama tweeting, "i do have a soft spot for gpt2".</li>
+    </ul>
+
+    <h2>What are "anomalous tokens"?</h2>
+    <p>Without having heard this term before, we can interpret this as:
+
+        “anomalous“ + “token” = ~abnormal word/part of a word
+    
+    coupled with fingerprinting, a process of identification through distinct markers. These “distinct markers” are tokens, when messaged to the model and asked to repeat them back,
+    
+        “…result[s] in a previously undocumented failure mode for GPT-2 and GPT-3 models.”
+    
+    These “failure modes” are expressed through erratic and nonsensical messages, repeating back a completely different word, or even getting hostile upon request to repeat the tokens. These anomalous tokens are referred to as “unspeakable tokens”.
+    </p>
+    
+    <h2>The Running Theory</h2>
+    <p><em>" … [unspeakable tokens] are words that appeared in the GPT-2 training set frequently enough to be assigned tokens by the GPT-2 tokenizer… but which didn’t appear in the more curated GPT-J and GPT-3 training sets. So the embeddings for these tokens may never have been updated by actual usages of the words during the training of these newer models. This might explain why the models aren’t able to repeat them — they never saw them spoken."</em></p>
+
+    <h2>The Research</h2>
+    <p>Using gradient descent, you can tweak a random image to trigger certain responses, and you’ll be able to see what features a neural network uses to recognize things like goldfishes, or flamingos. It doesn’t give us the actual objects, but rather the specific details the network looks for, to help us check if it’s learning correctly.
+
+        Turns out, you can use this for text-based prompt generation as well, but with a bit of a twist.</p>
+
+    <h3>Estimating Embedding Distances and Finding Semantic Relationships</h3>
+    <p>Even though LLM tokens are discrete (while pixel tokens used in images aren’t), they can be mapped to embeddings, giving the previously ethereal and wispy word ideas the continuous space needed to draw word-meaning relationships between them on a lower-level plane.</p>
+    <p>Here's a sample of some code used to generate optimal inputs given a desired token output. Full repo <a href="https://github.com/jessicarumbelow/Backwards">here</a>.</p>
+    <code>
+        from time import time
+        target_output = " the best player?"
+        input_len = 2
+        
+        base_input = word_embeddings[tokenizer.encode(target_output)].mean(dim=0)
+        base_input = base_input.repeat(1, input_len, 1)
+        
+        tic = time()
+        oi = optimise_input(base_input=base_input, 
+                            plt_loss=False,
+                            verbose=2, 
+                            epochs=500, 
+                            lr_decay=False,
+                            return_early=False, 
+                            lr=0.1, 
+                            batch_size=20, 
+                            target_output=target_output, 
+                            output_len=4,
+                            input_len=input_len, 
+                            w_freq=20, 
+                            dist_reg=1, 
+                            perp_reg=0,
+                            loss_type='log_prob_loss',
+                            noise_coeff = 0.75)
+        toc = time()
+        tt = toc - tic
+        print('Time Taken: ', tt)
+    </code>
+
+    <p>This code optimizes the input embeddings to trigger a desired output token using gradient descent. By tweaking the input and observing the model’s outputs, we can gain insights into what features and associations the model has learned.</p>
+
+    <p>The sets of best input + outputs were then mapped to embeddings, then ran through a k-means clustering algorithm (ELI5: process of iteratively grouping data points based on feature similarities). In this case, it was used to group semantically related tokens and identify which ones were closest to the overall centroid of the data set in the embedding space. Through this process of centroid-proximate estimation, researchers made a surprising discovery about the nature of these anomalous tokens and what they represent.</p>
+
+    <h2>What Came of It</h2>
+    <p>The discovery of "SolidGoldMagikarp" and other anomalous tokens revealed that these tokens were closer to the centroid of the entire training data, rather than pointing to their respective cluster centroids as originally thought.</p>
+    <p>These tokens were closer to the centroid of the entire training data (roughly said), rather than pointing to their respective cluster centroids as they originally thought. These “anomalous tokens” as text prompts let us make sense of the tokenizer behavior, and therefore narrow down from which GPT dataset the model was trained on from running prompts like these:</p>
+    <img src="prompting.webp" alt="Image" class="w-full h-auto mt-4">
+
+    <h2>Implications and Future Applications</h2>
+    <p>The finding of anomalous token fingerprints has some pretty big implications beyond just figuring out where a model comes from. It could help us check for biases and limitations in models based on the data they were trained on, or see what kind of associations and knowledge they’ve truly learned. As language models start being used more and more in everyday life, this kind of forensic analysis could be key in making sure they’re transparent, fair, and doing what they’re supposed to do.</p>
+
+    <h2>The Takeaway</h2>
+    <p>Using these “weird tokens”, “glitch tokens”, “aberrant tokens”… what have you, give us a cool peek into how LLMs work behind the scenes. By causing models to generate unexpected or even straight rude outputs, they reveal the edges of models’ learned knowledge and the quirks of their training data. Like the case of the mystery of gpt2-chatbot, you too, dear reader, can use sleeper-cell activation words to sleuth out hidden lineages and capabilities of these models. Other strategies include prompting engineering techniques, which I’ll cover in a later article. As research continues in the fields of AI, ML, and NLP, I’m sure it’ll help us understand how to better audit, refine, and align language models to be safer and more reliable.
+
+        Neat, right?.</p>
+
+    <hr>
+
+    <p><em>Thanks for reading! This is a bastardization from me using AI to try to translate my <a href="https://github.com/jessicarumbelow/Backwards">Medium article</a> into a blog post on my website. </em></p>
+    <a href="index.html" class="back-button">Back to Home</a>
+</body>
+</html>

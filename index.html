@@ -1,32 +1,185 @@
 <!DOCTYPE html>
-<html>
-<head>
-    <title>genecorp</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="styles.css">
-    <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
-    <script src="https://d3js.org/topojson.v1.min.js"></script>
-</head>
-<body>
-    <h2>gene</h2>
-        <button class="my-button" onclick="window.location.href='contactme.html'">
-            <span>contact me</span>
-        </button>
-        <button class="my-button" onclick="window.location.href='projects.html'">
-            <span>projects</span>
-        </button>
-        <button class="my-button" onclick="window.location.href='studying.html'">
-            <span>disciplines</span>
-        </button>
-        <button class="my-button" onclick="window.location.href='blogsandessays.html'">
-            <span>blogs & essays</span>
-        </button>
-    </div>
-    <section id="turnglobe">
-        <div id="worldmap"></div>
-        <p id="globesarecool">there is nothing here for you. you are all alone.</p>
-    </section>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>gene hwang</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <script src="tailwind.config.js"></script>
+        <script>
+            function redirectAfter2Seconds(initialUrl, finalUrl) {
+                // Navigate to the initial URL
+                window.location.href = initialUrl;
+    
+                // Set a timer to navigate to the final URL after 2 seconds
+                setTimeout(function() {
+                    window.location.href = finalUrl;
+                }, 2000);
+            }
+        </script>
+        <link href="globals.css" rel="stylesheet">
+        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+        <link rel="icon" href="favicon.ico" type="image/x-icon">
+    </head>
+<body class="bg-background text-foreground transition-colors duration-300">
+    <div class="flex flex-col min-h-[100vh]">
+        <header class="flex items-center justify-between px-4 py-6 sm:px-6 lg:px-8">
+            <div class="flex items-center gap-4">
+                <div class="text-2xl font-bold">gene hwang</div>
+                <div class="text-sm text-muted-foreground">
+                    ai engineer, ml enthusiast, friendly backyard mechanic
+                </div>
+            </div>
+            <div class="flex items-center gap-4">
+                <a href="https://twitter.com/yerbymatey" target="_blank" rel="noopener noreferrer" class="text-sm font-medium text-muted-foreground hover:underline underline-offset-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5">
+                        <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path>
+                    </svg>
+                </a>
+                <a href="https://github.com/yerbymatey" target="_blank" rel="noopener noreferrer" class="text-sm font-medium text-muted-foreground hover:underline underline-offset-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5">
+                        <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                    </svg>
+                </a>
+                <button id="theme-toggle" class="text-sm font-medium text-muted-foreground hover:underline underline-offset-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </header>
+        <nav class="flex items-center justify-center gap-4 px-4 py-4 sm:px-6 lg:px-8 border-y">
+            <a class="text-sm font-medium text-muted-foreground hover:underline underline-offset-4" href="/projects/projects.html">
+                projects
+            </a>
+            <a class="text-sm font-medium text-muted-foreground hover:underline underline-offset-4" href="/blogs/blogs.html">
+                thoughts + technical stuff
+            </a>
+            <a class="text-sm font-medium text-muted-foreground hover:underline underline-offset-4" href="treats.html">
+                treats
+            </a>
+        </nav>
+        <main class="flex-1 px-4 py-12 sm:px-6 lg:px-8">
+            <div class="mx-auto max-w-3xl space-y-12">
+                <section>
+                    <h2 class="text-2xl font-bold">hi!</h2>
+                    <div class="prose mt-4 text-muted-foreground">
+                        <p>
+                            hey, i'm gene, a mostly-autodidact MLOps and AI engineer.
+                        </p>
 
-    <script src="script.js"></script>
+                        <p>
+                            most of what i know through the internet, hands-on projects, and a <strong>ton</strong> of trial and error. i'm a firm believer in the power of self-directed learning and the importance of building things that matter, made available to everyone. you can find me at the <a href="https://themultiverse.school" target="_blank" rel="noopener noreferrer">multiverse school</a>, where i'm working on a few projects with people all around the world.
+                        </p>
+                    </div>
+                </section>
+                <section>
+                    <h2 class="text-2xl font-bold">ongoing projects:</h2>
+                    <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                        <div class="rounded-lg border bg-card text-card-foreground shadow-sm" data-v0-t="card">
+                            <div class="flex flex-col space-y-1.5 p-6">
+                                <h3 class="whitespace-nowrap text-2xl font-semibold leading-none tracking-tight">briend</h3>
+                                <p class="text-sm text-muted-foreground">
+                                    find the post on the tip of ur tongue
+                                </p>
+                            </div>
+                            <div class="p-6 pt-1">
+                                <div class="prose text-muted-foreground">
+                                    <p>
+                                        semantic searching from natural language, powered by nlp and ai to retrieve bookmarked social media posts. i built this with python, javascript, a couple of very ethical scrapers, and postgres. (gradio demo only)
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="flex items-center p-6">
+                                <a class="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground shadow transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50" href="https://github.com/yerbymatey/briend?tab=readme-ov-file">
+                                    please don't
+                                </a>
+                            </div>
+                        </div>
+                        <div class="rounded-lg border bg-card text-card-foreground shadow-sm" data-v0-t="card">
+                            <div class="flex flex-col space-y-1.5 p-6">
+                                <h3 class="whitespace-nowrap text-2xl font-semibold leading-none tracking-tight">multi-swarm</h3>
+                                <p class="text-sm text-muted-foreground">distributed compute</p>
+                            </div>
+                            <div class="p-6 pt-1">
+                                <div class="prose text-muted-foreground">
+                                    <p>
+                                    multiverse students can host and request compute resources from each other. it's like a decentralized cloud computing platform. only for single machine inference requests for now, but we're working on it.
+                                </p>
+                                </div>
+                            </div>
+                            <div class="flex items-center p-6">
+                                <a class="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground shadow transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50" href="https://themultiverse.school/secret_swarm">
+                                    (multiverse only for rn)
+                                </a>
+                            </div>
+                        </div>
+                        <div class="rounded-lg border bg-card text-card-foreground shadow-sm" data-v0-t="card">
+                            <div class="flex flex-col space-y-1.5 p-6">
+                                <h3 class="whitespace-nowrap text-2xl font-semibold leading-none tracking-tight">biohacking</h3>
+                                <p class="text-sm text-muted-foreground">
+                                    culture ur own bacteria!
+                                </p>
+                            </div>
+                            <div class="p-6 pt-1">
+                                <div class="prose text-muted-foreground">
+                                    <p>
+                                        buy some lab stuff. it's fun and not at all dangerous, mostly. use the stuff to culture bacteria and other microorganisms. i'm working on a guide to get you started in your own basement.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="flex items-center p-6">
+                                <a id="redirectLink" class="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground shadow transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" onclick="event.preventDefault(); redirectAfter2Seconds('https://www.youtube.com/watch?v=dQw4w9WgXcQ', 'https://geneweb.site/projects/biohacking.html');">
+                                    check it out
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+        <footer class="bg-muted px-4 py-6 sm:px-6 lg:px-8">
+            <div class="mx-auto max-w-3xl text-center text-muted-foreground">
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        const themeToggle = document.getElementById('theme-toggle');
+        const html = document.documentElement;
+
+        themeToggle.addEventListener('click', () => {
+            if (html.classList.contains('dark')) {
+                html.classList.remove('dark');
+                localStorage.setItem('theme', 'light');
+            } else {
+                html.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
+            }
+        });
+
+        // Check for saved theme preference or use system preference
+        const savedTheme = localStorage.getItem('theme');
+        const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+        if (savedTheme === 'dark' || (!savedTheme && systemPrefersDark)) {
+            html.classList.add('dark');
+        }
+    </script>
 </body>
+<footer class="flex items-center justify-center bg-muted px-4 py-6 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-3xl text-center text-muted-foreground">
+        <script src="https://cdn.tailwindcss.com"></script>
+        <script src="tailwind.config.js"></script>
+        <p>email me at yellowstripesbluespots@protonmail.com, if you want</p>
+    </div>
+</footer>
 </html>
